@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>Customers</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+            else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newCustomer() { showform('insert'); }
+    function updateCustomer(pid) { showform('update'); }
+    function deleteCustomer(pid) { showform ('delete'); }
+    function browseCustomer() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseCustomers()">
+<h1>Customers</h1>
+
+[ 
+    <a href="Customers.HTML">Customers</a>       | 
+    <a href="Schedules.html">Schedules</a>       |
+    <a href="Locations.html">Locations</a>       |
+    <a href="Inventories.html">Inventories</a>   |  
+    <a href="Equipment.html">Equipment</a>       |
+    <a href="Trainers.html">Trainers</a>         |
+    <a href="Transactions.html">Transactions</a> |
+]
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newCustomer()">New</a></th>
+    <th></th>
+    <th>customerID</th>
+    <th>transactionID</th>
+    <th>fname</th>
+    <th>lname</th>
+    <th>pronouns</th>
+    <th>age</th>
+    <th>customerAddress</th>
+    <th>email</th>
+    <th>membershipType</th>
+    <th>hasActiveMembership</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <td >William</td>
+    <td >Adama</td>
+    <td>he/him</td>
+    <td>61</td>
+    <td>1000 Falkreath Court, Falkreath, Skyrim 0001</td>
+    <td>wadama@gmail.com</td>
+    <td>Single Location</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td align="right" >2</td>
+    <td>Lee</td>
+    <td>Adama</td>
+    <td>they/them</td>
+    <td>1000 Falkreath Court, Falkreath, Skyrim 0001</td>
+    <td>ladama@gmail.com</td>
+    <td>All Locations</td>
+    <td>true</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateCustomer('this.customerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteCustomer('this.customerID')">Delete</a></td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <td>Laura</td>
+    <td>Caprica</td>
+    <td>she/her</td>
+    <td>1000 Falkreath Court, Falkreath, Skyrim 0001</td>
+    <td>ladama@gmail.com</td>
+    <td>Single Location</td>
+    <td>true</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addCustomer">
+        <legend><strong>Add Customer</strong></legend>
+          <fieldset class="fields">
+            <label> transactionID</label> <select name="transactionID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> first name </label> <input type="text" name="fname">
+            <label> last name </label> <input type="text" name="lname">
+            <label> pronouns </label> <select name="pronouns">
+            	<option value="0">&nbsp;</option>
+                <option value="1">he/him</option>
+                <option value="2">she/her</option>
+                <option value="3">they/them</option>
+                </select>
+            <label> age </label> <input type="text" name="age">
+            <label>customerAddress</label> <input type="text" name="customerAddress">
+            <label>email</label><input type="text">
+            <label>membershipType</label><select name="membershipType">
+                <option value="Single Location">Single Store</option>
+                <option value="All Locations">All Locations</option>
+                </select>
+            <label>hasActiveMembership</label><select name="hasActiveMembership">
+                <option value="TRUE">true</option>
+                <option value="FALSE">false</option>
+                </select>
+      </fieldset>
+          <input class="btn" type="submit" id="addCustomer" value="Add Customer">
+          <input class="btn" type="button" value="cancel" onClick="browseCustomers()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateCustomer">
+        <legend><strong>Update Customer</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="customerID" id="updatecustomerID" value="1">
+          <label> customerID: </label> 1
+            <label> first name </label> <input type="text" name="fname" value="William">
+            <label> last name </label> <input type="text" name="lname" value="Adama">
+            <label> pronouns </label> <select name="pronouns">
+                <option value="he/him" selected>he/him</option>
+                <option value="she/her">she/her</option>
+                <option value="they/them">they/them</option>
+                </select>
+            <label> age </label> <input type="text" name="age" value="18">
+            <label> customerAddress</label><input type="text" name="customerAddress" value="1000 Falkreath Court, Falkreath, Skyrim 0001">
+            <label> email</label><input type="text" name="email" value="wadama@gmail.com">
+            <label>membershipType</label><select name="membershipType">
+                <option value="Single Location">Single Store</option>
+                <option value="All Locations">All Locations</option>
+                </select>
+            <label>hasActiveMembership</label><select name="hasActiveMembership">
+                <option value="TRUE">true</option>
+                <option value="FALSE">false</option>
+                </select>
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveCustomer" value="Save Update Customer">
+          <input class="btn" type="button" value="cancel" onClick="browsePeople()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteCustomer">
+      <legend><strong>Delete Customer</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="customerID" id="deletecustomerID" value="1">
+          <label><strong>ID:</strong></label> 1
+            <label> <strong>Name</strong> </label> William Adama
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteCustomer" value="Delete Customer">
+          <input class="btn" type="button" value="cancel" onClick="browsePeople()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>

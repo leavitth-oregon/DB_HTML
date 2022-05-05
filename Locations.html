@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Locations</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+            else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newLocation() { showform('insert'); }
+    function updateLocation(pid) { showform('update'); }
+    function deleteLocation(pid) { showform ('delete'); }
+    function browseLocation() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseLocations()">
+<h1>Locations</h1>
+
+[ 
+    <a href="Customers.HTML">Customers</a>       | 
+    <a href="Schedules.html">Schedules</a>       |
+    <a href="Locations.html">Locations</a>       |
+    <a href="Inventories.html">Inventories</a>   |  
+    <a href="Equipment.html">Equipment</a>       |
+    <a href="Trainers.html">Trainers</a>         |
+    <a href="Transactions.html">Transactions</a> |
+]
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newLocation()">New</a></th>
+    <th></th>
+    <th>locationID</th>
+    <th>inventoryID</th>
+    <th>locationAddress</th>
+    <th>manager</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <td>4215 Jimmy Lee Smith Pkwy, Hiram, GA 30141</td>
+    <td>Jimmy Smith</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td align="right" >2</td>
+    <td>3801 Olsen Blvd, Amarillo, TX 79109</td>
+    <td>Kate Olsen</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateLocation('this.locationID')">Edit</a></td>
+    <td><a href="#" onclick="deleteLocation('this.locationID')">Delete</a></td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <td>5833 W Saginaw Hwy, Lansing, MI 48917</td>
+    <td>Johnny Depp</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addLocation">
+        <legend><strong>Add Location</strong></legend>
+          <fieldset class="fields">
+            <label> inventoryID</label> <select name="inventoryID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> locationAddress </label> <input type="text" name="locationAddress">
+            <label> manager </label> <input type="text" name="manager">
+      </fieldset>
+          <input class="btn" type="submit" id="addLocation" value="Add Location">
+          <input class="btn" type="button" value="cancel" onClick="browseLocations()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateLocation">
+        <legend><strong>Update Location</strong></legend>
+          <fieldset class="fields">
+            <input type="hidden" name="locationID" id="updatelocationID" value="1">
+            <label> inventoryID</label> <select name="inventoryID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> locationAddress </label> <input type="text" name="locationAddress">
+            <label> manager </label> <input type="text" name="manager">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveLocation" value="Save Update Location">
+          <input class="btn" type="button" value="cancel" onClick="browseLocations()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteLocation">
+      <legend><strong>Delete Location</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="locationID" id="deletelocationID" value="1">
+          <label><strong>ID:</strong></label> 1
+            <label> <strong>locationAddress</strong>4215 Jimmy Lee Smith Pkwy, Hiram, GA 30141</label> 
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteLocation" value="Delete Location">
+          <input class="btn" type="button" value="cancel" onClick="browseLocations()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>

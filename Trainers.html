@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Trainer</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+            else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newTrainer() { showform('insert'); }
+    function updateTrainer(pid) { showform('update'); }
+    function deleteTrainer(pid) { showform ('delete'); }
+    function browseTrainer() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseTrainer()">
+<h1>Trainer</h1>
+
+[ 
+    <a href="Customers.HTML">Customers</a>       | 
+    <a href="Schedules.html">Schedules</a>       |
+    <a href="Locations.html">Locations</a>       |
+    <a href="Inventories.html">Inventories</a>   |  
+    <a href="Equipment.html">Equipment</a>       |
+    <a href="Trainers.html">Trainers</a>         |
+    <a href="Transactions.html">Transactions</a> |
+]
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newTrainer()">New</a></th>
+    <th></th>
+    <th>trainerID</th>
+    <th>scheduleID</th>
+    <th>trainerName</th>
+    <th>salary</th>
+    <th>email</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateTrainer('this.trainerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteTrainer('this.trainerID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <th>John Cleese</th>
+    <th>40000.00</th>
+    <th>monty@python.com</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateTrainer('this.trainerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteTrainer('this.trainerID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td align="right" >2</td>
+    <th>Terry Gilliam</th>
+    <th>42000</th>
+    <th>tgilliam@bbc.com</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateTrainer('this.trainerID')">Edit</a></td>
+    <td><a href="#" onclick="deleteTrainer('this.trainerID')">Delete</a></td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <th>Graham Chapman</th>
+    <th>40000</th>
+    <th>chapmang@gmail.com</th>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addTrainer">
+        <legend><strong>Add Trainer</strong></legend>
+          <fieldset class="fields">
+            <label> scheduleID</label> <select name="scheduleID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> trainerName </label> <input type="text" name="trainerName">
+            <label> salary </label> <input type="text" name="salary">
+            <label>email</label><input type="text" name="email">
+      </fieldset>
+          <input class="btn" type="submit" id="addTrainer" value="Add Trainer">
+          <input class="btn" type="button" value="cancel" onClick="browseTrainer()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateTrainer">
+        <legend><strong>Update Trainer</strong></legend>
+          <fieldset class="fields">
+            <input type="hidden" name="trainerID" id="updatetrainerID" value="1">
+            <label> scheduleID</label> <select name="scheduleID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> trainerName </label> <input type="text" name="trainerName">
+            <label> salary </label> <input type="text" name="salary">
+            <label>email</label><input type="text" name="email">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveTrainer" value="Save Update Trainer">
+          <input class="btn" type="button" value="cancel" onClick="browseTrainer()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteTrainer">
+      <legend><strong>Delete Trainer</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="trainerID" id="deletetrainerID" value="1">
+          <label><strong>ID:</strong></label> 1
+            <label> <strong>trainerName</strong>John Cleese</label> 
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteTrainer" value="Delete Trainer">
+          <input class="btn" type="button" value="cancel" onClick="browseTrainer()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
+</html>

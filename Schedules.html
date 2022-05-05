@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>Schedules</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+            else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newSchedule() { showform('insert'); }
+    function updateSchedule(pid) { showform('update'); }
+    function deleteSchedule(pid) { showform ('delete'); }
+    function browseSchedule() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseSchedule()">
+<h1>Schedules</h1>
+
+[ 
+    <a href="Customers.HTML">Customers</a>       | 
+    <a href="Schedules.html">Schedules</a>       |
+    <a href="Locations.html">Locations</a>       |
+    <a href="Inventories.html">Inventories</a>   |  
+    <a href="Equipment.html">Equipment</a>       |
+    <a href="Trainers.html">Trainers</a>         |
+    <a href="Transactions.html">Transactions</a> |
+]
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newSchedule()">New</a></th>
+    <th></th>
+    <th>scheduleID</th>
+    <th>trainerID</th>
+    <th>activity</th>
+    <th>activityDays</th>
+    <th>startTime</th>
+    <th>duration</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateSchedule('this.scheduleID')">Edit</a></td>
+    <td><a href="#" onclick="deleteSchedule('this.scheduleID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td align="right" >1</td>
+    <th>30 Minute Circuit</th>
+    <th>Monday/Wednesday/Friday</th>
+    <th>18:00</th>
+    <th>00:30:00</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateSchedule('this.scheduleID')">Edit</a></td>
+    <td><a href="#" onclick="deleteSchedule('this.scheduleID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td align="right" >2</td>
+    <th>Powerlifting</th>
+    <th>Tuesday/Thursday/Saturday</th>
+    <th>20:00</th>
+    <th>01:00:00</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateSchedule('this.scheduleID')">Edit</a></td>
+    <td><a href="#" onclick="deleteSchedule('this.scheduleID')">Delete</a></td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <th>Yoga</th>
+    <th>Sunday/Monday/Tuesday/Wednesday/Thursday/Friday/Saturday</th>
+    <th>14:00</th>
+    <th>04:00:00</th>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addSchedule">
+        <legend><strong>Add Schedule</strong></legend>
+          <fieldset class="fields">
+            <label> trainerID</label> <select name="trainerID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> activity </label> <input type="text" name="activity">
+            <label> activityDays </label> <input type="text" name="activityDays">
+            <label>startTime</label><input type="text" name="startTime">
+            <label>duration</label><input type="text" name="duration">
+      </fieldset>
+          <input class="btn" type="submit" id="addSchedule" value="Add Schedule">
+          <input class="btn" type="button" value="cancel" onClick="browseSchedule()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="UpdateSchedule">
+        <legend><strong>Update Schedule</strong></legend>
+          <fieldset class="fields">
+            <input type="hidden" name="scheduleID" id="updatescheduleID" value="1">
+            <label> trainerID</label> <select name="trainerID">
+                <option value="0">&nbsp;</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            <label> activity </label> <input type="text" name="activity">
+            <label> activityDays </label> <input type="text" name="activityDays">
+            <label>startTime</label><input type="text" name="startTime">
+            <label>duration</label><input type="text" name="duration">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveSchedule" value="Save Update Schedule">
+          <input class="btn" type="button" value="cancel" onClick="browseSchedule()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteSchedule">
+      <legend><strong>Delete Schedule</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following?</p>
+          <input type="hidden" name="scheduleID" id="deletescheduleID" value="1">
+          <label><strong>ID:</strong></label> 1
+            <label> <strong>activity</strong>30 Minute Circuit</label> 
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteSchedule" value="Delete Schedule">
+          <input class="btn" type="button" value="cancel" onClick="browseSchedule()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
+</html>
